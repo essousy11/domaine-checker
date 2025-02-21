@@ -42,6 +42,9 @@ def generate_brandable_domain():
 # Generate 100 brandable domain names
 brandable_domains = [generate_brandable_domain() for _ in range(100)]
 
-# Print the generated domain names
-for i, domain in enumerate(brandable_domains, 1):
-    print(f"{i}. {domain}")
+# Save the generated domain names to a file
+with open("brandable_domains.txt", "w") as file:
+    for i, domain in enumerate(brandable_domains, 1):
+        file.write(f"{i}. {domain}\n")
+
+print("100 brandable domain names have been saved to 'brandable_domains.txt'.")
