@@ -1,0 +1,47 @@
+import random
+
+# Define vowels and consonants for easy pronunciation
+vowels = ['a', 'e', 'i', 'o', 'u']
+consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 
+              'n', 'p', 'r', 's', 't', 'v', 'w', 'y', 'z']
+
+# Avoid confusing letters and combinations
+confusing_letters = ['q', 'x', 'y']  # Less common or harder to pronounce
+confusing_combinations = ['th', 'ph', 'gh', 'sh', 'ch']  # Can be tricky for some languages
+
+# Function to generate a brandable domain name
+def generate_brandable_domain():
+    # Randomly choose the length of the domain (between 4 and 8 characters)
+    length = random.randint(4, 8)
+    
+    # Start with a consonant (stronger start)
+    domain = random.choice(consonants)
+    
+    # Alternate between vowels and consonants for easy pronunciation
+    for i in range(1, length):
+        if domain[-1] in vowels:
+            domain += random.choice(consonants)
+        else:
+            domain += random.choice(vowels)
+    
+    # Ensure the domain doesn't contain confusing letters or combinations
+    for letter in confusing_letters:
+        if letter in domain:
+            return generate_brandable_domain()  # Regenerate if confusing letter is present
+    
+    for combo in confusing_combinations:
+        if combo in domain:
+            return generate_brandable_domain()  # Regenerate if confusing combination is present
+    
+    # Add a common domain extension
+    extensions = ['.com', '.io', '.co', '.net']
+    domain += random.choice(extensions)
+    
+    return domain
+
+# Generate 100 brandable domain names
+brandable_domains = [generate_brandable_domain() for _ in range(100)]
+
+# Print the generated domain names
+for i, domain in enumerate(brandable_domains, 1):
+    print(f"{i}. {domain}")
