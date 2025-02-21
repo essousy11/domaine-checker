@@ -6,3 +6,8 @@ while read domain; do
         echo "$domain is AVAILABLE"
     fi
 done < domains.txt
+
+#Give execution permission:
+    #chmod +x check_domains.sh
+#Run the script:
+    #./check_domains.sh
